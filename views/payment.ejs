@@ -1,0 +1,135 @@
+<html>
+
+<head>
+    <base href="/">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../images/plogod614-41c9-a8ed-99372c8c45fa.ico" style="background-color: transparent">
+    <link type="text/css" rel="stylesheet" href="../css/style.css" />
+    <!-- Add icon library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    
+    <title>messagingclone</title>
+</head>
+
+<body>
+    <main>
+        <section class="products">
+            <h1 style="align-self:flex-start; justify-content:center; margin:30px 0 0 5%;">Shopping Cart
+            </h1>
+            <input type="checkbox" id="product-1" />
+            <div class="product">
+                <img src='https://images.unsplash.com/photo-1553440070-7b7e896ed9e9?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&ixid=eyJhcHBfaWQiOjE0NTg5fQ'
+                    alt=''>
+                <article>
+                    <label class="title" for="product-1"></label>
+                    <sub>Product Description</sub>
+                    <span class="price"></span>
+                </article>
+            </div>
+            <input type="checkbox" id="product-2" />
+            <div class="product">
+                <img src='https://images.unsplash.com/photo-1584990451792-a664349412ab?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&ixid=eyJhcHBfaWQiOjE0NTg5fQ'
+                    alt=''>
+                <article>
+                    <label class="title" for="product-2"></label>
+                    <sub>Product Description</sub>
+                    <span class="price"></span>
+                </article>
+            </div>
+            <input type="checkbox" id="product-3" />
+            <div class="product">
+                <img src='https://images.unsplash.com/photo-1584670473135-fad5fb52e3f2?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&ixid=eyJhcHBfaWQiOjE0NTg5fQ'
+                    alt=''>
+                <article>
+                    <label class="title" for="product-3"></label>
+                    <sub>Product Description</sub>
+                    <span class="price"></span>
+                </article>
+            </div>
+            <input type="checkbox" id="product-4" />
+            <div class="product">
+                <img src='https://images.unsplash.com/photo-1551843725-6479e28f3997?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&ixid=eyJhcHBfaWQiOjE0NTg5fQ'
+                    alt=''>
+                <article>
+                    <label class="title" for="product-4"></label>
+                    <sub>Product Description</sub>
+                    <span class="price"></span>
+                </article>
+            </div>
+            <input type="checkbox" id="product-5" />
+            <div class="product">
+                <img src='https://images.unsplash.com/photo-1467043153537-a4fba2cd39ef?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&ixid=eyJhcHBfaWQiOjE0NTg5fQ'
+                    alt=''>
+                <article>
+                    <label class="title" for="product-5"></label>
+                    <sub>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
+                        the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley
+                        of type and scrambled it to make a type specimen book. It has survived not only five centuries,
+                        but also the leap into electronic typesetting, remaining essentially unchanged. It was
+                        popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages,
+                        and more recently with desktop publishing software like Aldus PageMaker including versions of
+                        Lorem Ipsum.</sub>
+                    <span class="price"></span>
+                </article>
+            </div>
+            <section class="buy">
+                <div class="total-price">
+                    <h4>Order Summary</h4>
+                    <ul>
+                        <li><span>Order 1</span><span></span></li>
+                        <li><span>Order 2</span><span></span></li>
+                        <li><span>Order 3</span><span></span></li>
+                        <li><span>Order 4</span><span></span></li>
+                        <li><span>Order 5</span><span></span></li>
+                        <li><span><b>Total Price</b></span><span><b></b></span></li>
+                    </ul>
+                    <button class="delete" onclick="deleteProduct()">Delete</button>
+                    <form id="order" class="" action="/payment" method="post">
+                        <div class="form-group">
+                          <input class="form-control" type="hidden" id="id" name="id" value="">
+                        </div>
+                        <div class="form-group">
+                          <input class="form-control" type="hidden" id="email" name="email" value="">
+                        </div>
+                        <div class="form-group">
+                          <input class="form-control" type="hidden" id="phone" name="phone" value="">
+                        </div>
+                          <div class="form-group">
+                          <input class="form-control" type="hidden" id="amount" name="amount" value="">
+                        </div>
+                        <div class="form-group">
+                          <button class="paynow" id="paynow" style="background-color: green;" class="btn form-control btn-primary">Pay Now</button>
+                        </div>
+                      </form>
+                </div>
+            </section>
+        </section>
+    </main>
+    <div class="cursor"></div>
+</body>
+<script src="..//js/jquery.js"></script>
+<script src="..//js/index.js"></script>
+<script>
+
+    var totalprice = document.getElementsByClassName('totalPrice')[0].innerHTML.slice(1);
+    console.log(totalprice)
+    $('#order').submit(function(e) {
+        e.preventDefault();
+        $('#id').val('CST_ID03111');
+        $('#email').val('parasgupta34@gmail.com');
+        $('#phone').val('8851903402');
+        $('#amount').val('1000');
+
+        $(this).unbind().submit();
+
+    })
+
+</script>
+
+</html>
