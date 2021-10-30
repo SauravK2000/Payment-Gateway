@@ -26,23 +26,16 @@ app.post("/callback", (req, res) => {
 
     req.on('data', function (data) {
         body += data;
-        console.log('yaha1');
     });
 
     req.on('end', function () {
         var html = "";
         var post_data = qs.parse(body);
 
-        // received params in callback
-        console.log('Callback Response: ', post_data, "\n");
-        console.log('yaha2');
-
-
         // verify the checksum
         var checksumhash = post_data.CHECKSUMHASH;
         // delete post_data.CHECKSUMHASH;
         var result = checksum_lib.verifychecksum(post_data, config.PaytmConfig.key, checksumhash);
-        console.log("Checksum Result => ", result, "\n");
 
 
         // Send Server-to-Server request to verify Order Status
@@ -54,8 +47,7 @@ app.post("/callback", (req, res) => {
             post_data = 'JsonData=' + JSON.stringify(params);
 
             var options = {
-                hostname: 'securegw-stage.paytm.in', // for staging
-                // hostname: 'securegw.paytm.in', // for production
+                hostname: 'securegw-stage.paytm.in',
                 port: 443,
                 path: '/merchant-status/getTxnStatus',
                 method: 'POST',
@@ -64,7 +56,6 @@ app.post("/callback", (req, res) => {
                     'Content-Length': post_data.length
                 }
             };
-            console.log('yaha2');
 
             // Set up the request
             var response = "";
@@ -74,8 +65,6 @@ app.post("/callback", (req, res) => {
                 });
 
                 post_res.on('end', function () {
-                    console.log('S2S Response: ', response, "\n");
-                    console.log('yaha3');
                     var _result = JSON.parse(response);
                     if (_result.STATUS == 'TXN_SUCCESS') {
                         res.send('payment sucess')
@@ -103,7 +92,6 @@ app.post('/payment', (req, res) => {
     if (!paymentDetails.amount || !paymentDetails.customerId || !paymentDetails.customerEmail || !paymentDetails.customerPhone) {
         res.status(400).send('Payment failed')
     } else {
-        console.log('amount:',paymentDetails.amount);
         var params = {};
         params['MID'] = config.PaytmConfig.mid;
         params['WEBSITE'] = config.PaytmConfig.website;
