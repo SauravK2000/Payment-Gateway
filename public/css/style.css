@@ -135,7 +135,7 @@ label::after {
 .total-price ul li {
   display: flex;
   width: 100%;
-  height: 20px;
+  height: 30px;
   font-size: 1em;
   margin: 10px 0 5px 20px;
   background-color: transparent;
@@ -146,10 +146,10 @@ label::after {
   margin-right:40px;
 }
 .total-price ul li:last-child > span:first-child {
-  font-weight:700;
+  font-weight:800;
 }
 .total-price ul li:last-child > span + span > b {
-font-size:1.1em;
+font-size:1.2em;
 }
 .delete,
 .paynow{
